@@ -1,0 +1,273 @@
+:root {
+    --white: #ffffff;
+    --ice: #f2f9ff;
+    --sky: #d6ecff;
+    --azure: #38b6ff;
+    --azure-deep: #0a8fe8;
+    --ink: #000000;
+    --line: #b8dcf7;
+    --font-pixel: "Pixelify Sans", "Courier New", monospace;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-pixel);
+    color: var(--ink);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--white);
+    background-image:
+        linear-gradient(var(--sky) 1px, transparent 1px),
+        linear-gradient(90deg, var(--sky) 1px, transparent 1px);
+    background-size: 32px 32px;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 24px;
+    background: var(--white);
+    border-bottom: 3px solid var(--azure);
+    box-shadow: 0 4px 0 var(--sky);
+}
+
+.topbar h1 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.topbar-dot {
+    width: 14px;
+    height: 14px;
+    background: var(--azure);
+    box-shadow: 0 0 0 3px var(--white), 0 0 0 5px var(--azure), 0 0 14px var(--azure);
+    animation: pulse 2s infinite ease-in-out;
+}
+
+.calendar-container {
+    flex: 1;
+    min-height: 0;
+    padding: 20px;
+}
+
+#calendar {
+    height: 100%;
+    padding: 14px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 3px solid var(--azure);
+    box-shadow: 6px 6px 0 var(--sky), 0 0 24px rgba(56, 182, 255, 0.25);
+    clip-path: polygon(0 12px, 12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%);
+}
+
+.fc {
+    font-family: var(--font-pixel);
+    --fc-border-color: var(--line);
+    --fc-today-bg-color: var(--sky);
+    --fc-neutral-bg-color: var(--ice);
+    --fc-page-bg-color: transparent;
+}
+
+.fc .fc-toolbar-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink);
+}
+
+.fc .fc-button-primary {
+    font-family: var(--font-pixel);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    background: var(--white);
+    border: 2px solid var(--azure);
+    border-radius: 0;
+    box-shadow: 3px 3px 0 var(--sky);
+    transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.1s ease;
+}
+
+.fc .fc-button-primary:hover {
+    color: var(--ink);
+    background: var(--sky);
+    border-color: var(--azure-deep);
+}
+
+.fc .fc-button-primary:active,
+.fc .fc-button-primary.fc-button-active {
+    color: var(--ink);
+    background: var(--azure);
+    border-color: var(--azure-deep);
+    box-shadow: 0 0 0 var(--sky);
+    transform: translate(3px, 3px);
+}
+
+.fc .fc-button-primary:focus {
+    box-shadow: 0 0 0 3px var(--sky);
+}
+
+.fc .fc-button-primary:disabled {
+    color: #6b7c8a;
+    background: var(--ice);
+    border-color: var(--line);
+    box-shadow: none;
+}
+
+.fc-theme-standard td,
+.fc-theme-standard th,
+.fc-theme-standard .fc-scrollgrid {
+    border-color: var(--line);
+}
+
+.fc-col-header-cell {
+    background: var(--ice);
+}
+
+.fc-col-header-cell-cushion {
+    padding: 8px 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink);
+    text-decoration: none;
+}
+
+.fc-daygrid-day-number {
+    padding: 6px 8px;
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+}
+
+.fc-day-today .fc-daygrid-day-number {
+    background: var(--azure);
+}
+
+.fc-event {
+    padding: 2px 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink);
+    background: var(--sky);
+    border: 2px solid var(--azure);
+    border-radius: 0;
+    box-shadow: 2px 2px 0 var(--azure);
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.fc-event .fc-event-main,
+.fc-event .fc-event-title,
+.fc-event .fc-event-time {
+    color: var(--ink);
+}
+
+.fc-event:hover {
+    background: var(--white);
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0 var(--azure-deep);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    background: rgba(214, 236, 255, 0.7);
+    backdrop-filter: blur(3px);
+}
+
+.modal.open {
+    display: flex;
+}
+
+.modal-content {
+    width: 90%;
+    max-width: 500px;
+    padding: 24px;
+    color: var(--ink);
+    background: var(--white);
+    border: 3px solid var(--azure);
+    box-shadow: 8px 8px 0 var(--sky), 0 0 30px rgba(56, 182, 255, 0.35);
+    clip-path: polygon(0 14px, 14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);
+}
+
+.modal-title {
+    margin-bottom: 6px;
+    padding-bottom: 10px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 2px dashed var(--azure);
+}
+
+.modal-date {
+    margin: 10px 0;
+    font-size: 0.9rem;
+    color: var(--azure-deep);
+}
+
+.modal-body {
+    margin-bottom: 22px;
+    font-size: 1rem;
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+
+.modal-close {
+    display: block;
+    margin-left: auto;
+    padding: 8px 18px;
+    font-family: var(--font-pixel);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: var(--azure);
+    border: 2px solid var(--azure-deep);
+    box-shadow: 3px 3px 0 var(--sky);
+    cursor: pointer;
+}
+
+.modal-close:hover {
+    background: var(--sky);
+}
+
+.modal-close:active {
+    transform: translate(3px, 3px);
+    box-shadow: none;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.6; transform: scale(0.95); }
+    50% { opacity: 1; transform: scale(1.08); }
+}
+
+@media (max-width: 640px) {
+    .topbar h1 {
+        font-size: 0.95rem;
+    }
+
+    .calendar-container {
+        padding: 10px;
+    }
+
+    .fc .fc-toolbar {
+        flex-direction: column;
+        gap: 8px;
+    }
+}

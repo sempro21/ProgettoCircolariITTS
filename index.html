@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario Scolastico — Belluzzi da Vinci</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="circolari.css">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/locales-all.global.min.js" defer></script>
+    <script src="script.js" defer></script>
+    <script src="dropzone.js" defer></script>
+</head>
+<body>
+    <header class="topbar">
+        <span class="topbar-dot"></span>
+        <h1>Istituto "Belluzzi da Vinci" — Impegni &amp; Circolari</h1>
+    </header>
+
+    <main class="calendar-container">
+        <div id="calendar"></div>
+    </main>
+
+    <div id="eventModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-content">
+            <div id="modalTitle" class="modal-title"></div>
+            <div id="modalDate" class="modal-date"></div>
+            <div id="modalBody" class="modal-body"></div>
+            <button id="modalClose" class="modal-close" type="button">Chiudi</button>
+        </div>
+    </div>
+</body>
+</html>
